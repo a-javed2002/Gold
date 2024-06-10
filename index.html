@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            /* margin: 20px; */
         }
 
         .card {
@@ -19,8 +19,15 @@
             border-radius: 5px;
             padding: 20px;
             margin-bottom: 20px;
-            background-color: #f9f9f9;
+            background: linear-gradient(135deg, #f4d03f 0%, #f39c12 100%);
             text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .card h3 {
@@ -62,10 +69,44 @@
             background-color: #f9f9f9;
             margin-top: 20px;
         }
+
+        .flag {
+            display: flex;
+            align-items: center;
+        }
+
+        .flag img {
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .time {
+            font-size: 1.2em;
+        }
+
+        .marquee-ar {
+            background-color: #38a238;
+            color: #ffffff;
+            padding: 10px;
+        }
+
+        .marquee-en {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 10px;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Top bar with Oman flag and time -->
+    <!-- <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="flag">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Oman.svg" alt="Oman Flag">
+            <div>Oman</div>
+        </div>
+        <div class="time" id="current-time"></div>
+    </div> -->
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -92,7 +133,19 @@
     </nav>
 
     <div class="container">
-        <h2>Gold Rates</h2>
+        <div style="display: flex;justify-content: space-between;">
+            <h2>Gold Rates</h2>
+
+            <div>
+                <div class="flag">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Oman.svg" alt="Oman Flag">
+                    <div>Oman</div>
+                </div>
+                <div class="time" id="current-time"></div>
+            </div>
+
+            <button id="refresh-btn" class="btn btn-primary mt-3"><i class="fas fa-sync-alt"></i> Refresh Data</button>
+        </div>
 
         <div id="loader" class="loader">
             <div class="spinner-border text-primary" role="status">
@@ -104,7 +157,14 @@
             <!-- Data will be populated here -->
         </div>
 
-        <button id="refresh-btn" class="btn btn-primary mt-3"><i class="fas fa-sync-alt"></i> Refresh Data</button>
+    </div>
+
+    <!-- Marquee messages -->
+    <div class="marquee-ar">
+        <marquee direction="left">مرحبا بكم في أسعار الذهب</marquee>
+    </div>
+    <div class="marquee-en">
+        <marquee direction="right">Welcome to Gold Rates</marquee>
     </div>
 
     <footer>
@@ -206,9 +266,18 @@
             $('#refresh-btn').click(function () {
                 fetchData();
             });
+
+            // Function to update the current time
+            function updateTime() {
+                var now = new Date();
+                var timeString = now.toLocaleTimeString();
+                $('#current-time').text(timeString);
+            }
+
+            // Update time every second
+            setInterval(updateTime, 1000);
         });
     </script>
-
 </body>
 
 </html>
