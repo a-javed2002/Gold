@@ -1,90 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>latest Gold Rates</title>
-<!-- Bootstrap CSS -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-    }
-    .card {
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        margin-bottom: 10px;
-        background-color: #f9f9f9;
-    }
-    .card h3 {
-        margin-top: 0;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Gold Rates</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .card i {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .loader {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            margin: 0;
+        }
+
+        .header i {
+            cursor: pointer;
+            font-size: 1.5em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+            margin-top: 20px;
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h2>Gold Rates</h2>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="logo.jpg" alt="Logo" style="width: 40px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-    <div id="data-card" class="card">
-        <!-- Data will be populated here -->
+    <div class="container">
+        <h2>Gold Rates</h2>
+
+        <div id="loader" class="loader">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
+        <div id="data-row" class="row">
+            <!-- Data will be populated here -->
+        </div>
+
+        <button id="refresh-btn" class="btn btn-primary mt-3"><i class="fas fa-sync-alt"></i> Refresh Data</button>
     </div>
 
-    <button id="refresh-btn" class="btn btn-primary mt-3"><i class="fas fa-sync-alt"></i> Refresh Data</button>
-</div>
+    <footer>
+        <p>&copy; 2024 Made by Love ♥</p>
+    </footer>
 
-<!-- https://api.gold-api.com/symbols -->
-<!-- https://www.gold-api.com/docs -->
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-<!-- Font Awesome -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-<script>
-$(document).ready(function(){
-    // Function to fetch data from API
-    function fetchData() {
-        $.ajax({
-            url: 'https://api.gold-api.com/price/XAU', // Replace with your API endpoint
-            method: 'GET',
-            success: function(response) {
-                // On success, handle the response data
-                displayData(response);
-            },
-            error: function(xhr, status, error) {
-                // On error, handle the error
-                console.error('Error:', error);
+    <script>
+        $(document).ready(function () {
+            // Function to fetch data from API
+            function fetchData() {
+                $('#loader').show(); // Show loader
+                $.ajax({
+                    url: 'https://api.gold-api.com/price/XAU', // Replace with your API endpoint
+                    method: 'GET',
+                    success: function (response) {
+                        // On success, fetch exchange rate and display the data
+                        fetchExchangeRate(response);
+                    },
+                    error: function (xhr, status, error) {
+                        // On error, handle the error
+                        $('#loader').hide(); // Hide loader
+                        console.error('Error:', error);
+                    }
+                });
             }
+
+            // Function to fetch USD to INR exchange rate
+            function fetchExchangeRate(goldData) {
+                $.ajax({
+                    url: 'https://api.exchangerate-api.com/v4/latest/USD', // Replace with your exchange rate API endpoint
+                    method: 'GET',
+                    success: function (response) {
+                        // On success, handle the exchange rate data
+                        // var usdToInrRate = response.rates.INR;
+                        var usdToInrRate = response.rates.OMR;
+                        $('#loader').hide(); // Hide loader
+                        displayData(goldData, usdToInrRate);
+                    },
+                    error: function (xhr, status, error) {
+                        // On error, handle the error
+                        $('#loader').hide(); // Hide loader
+                        console.error('Error:', error);
+                    }
+                });
+            }
+
+            // Function to display data on the webpage
+            function displayData(data, exchangeRate) {
+                var dataRow = $('#data-row');
+                dataRow.empty(); // Clear previous data
+
+                // Assuming data.price is the price of 24 Karat gold per gram in USD
+                var price24Karat = data.price;
+                var price22Karat = price24Karat * 22 / 24;
+                var price21Karat = price24Karat * 21 / 24;
+                var price18Karat = price24Karat * 18 / 24;
+                var ouncePrice = price24Karat * 31.1035; // 1 ounce = 31.1035 grams
+
+                // Convert prices to INR
+                var price24KaratInr = price24Karat * exchangeRate;
+                var price22KaratInr = price22Karat * exchangeRate;
+                var price21KaratInr = price21Karat * exchangeRate;
+                var price18KaratInr = price18Karat * exchangeRate;
+                var ouncePriceInr = ouncePrice * exchangeRate;
+
+                // Create card elements
+                var cards = [
+                    { title: '24 Karat', price: price24KaratInr, icon: 'fas fa-gem' },
+                    { title: '22 Karat', price: price22KaratInr, icon: 'fas fa-gem' },
+                    { title: '21 Karat', price: price21KaratInr, icon: 'fas fa-gem' },
+                    { title: '18 Karat', price: price18KaratInr, icon: 'fas fa-gem' },
+                    { title: 'Ounce Price', price: ouncePriceInr, icon: 'fas fa-weight' }
+                ];
+
+                cards.forEach(function (card) {
+                    var cardContent = `
+                        <div class="col-md-4">
+                            <div class="card">
+                                <i class="${card.icon}"></i>
+                                <h3>${card.title}</h3>
+                                <p>Price: ${card.price.toFixed(2)} OMR per ${card.title === 'Ounce Price' ? 'ounce' : 'gram'}</p>
+                            </div>
+                        </div>
+                    `;
+                    dataRow.append(cardContent);
+                });
+
+                var updatedAtContent = `<p class="text-center w-100">Last Updated: ${data.updatedAtReadable}</p>`;
+                dataRow.append(updatedAtContent);
+            }
+
+            // Fetch data when the page loads
+            fetchData();
+
+            // Refresh data on button click
+            $('#refresh-btn').click(function () {
+                fetchData();
+            });
         });
-    }
-
-    // Function to display data on the webpage
-    function displayData(data) {
-        var dataCard = $('#data-card');
-        dataCard.empty(); // Clear previous data
-
-        // Create card elements
-        var cardContent = `
-            <h3>${data.name} (${data.symbol})</h3>
-            <p>Price: $${data.price}</p>
-            <p>Last Updated: ${data.updatedAtReadable}</p>
-        `;
-
-        // Append card content to the card
-        dataCard.append(cardContent);
-    }
-
-    // Fetch data when the page loads
-    fetchData();
-
-    // Refresh data on button click
-    $('#refresh-btn').click(function() {
-        fetchData();
-    });
-});
-</script>
+    </script>
 
 </body>
+
 </html>
