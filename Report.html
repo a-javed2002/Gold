@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Sales Summary</title>
+    <!-- Bootstrap CSS -->
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+    }
+
+    @media print {
+        @page {
+            size: landscape;
+        }
+    }
+
+    .highlight {
+        border-width: 2px; /* Increase border width */
+        border-style: solid; /* Solid border style */
+        font-weight: bold; /* Make text bold */
+    }
+</style>
+
+<body>
+    <div class="report-container">
+        <div style="display: flex;justify-content: space-between;">
+            <b>Date: 5 June, 2024</b>
+            <b>Daily Sales Summary</b>
+            <b>BOATING BASIN CLIFTON KARACHI</b>
+            <!-- <div>
+                <button id="printButton">Print Report (Landscape)</button>
+            </div> -->
+        </div>
+
+        <table class="sales-summary" border="1" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th rowspan="2">Sales Type</th>
+                    <th rowspan="2">Orders</th>
+                    <th rowspan="2">Gross Sales</th>
+                    <th colspan="4">Cash</th>
+                    <th colspan="2">Credit Card</th>
+                    <th rowspan="2">Adv. Sales/ <br> Gift Voucher</th>
+                    <th rowspan="2">Discounts</th>
+                    <th colspan="2">Adjustment</th>
+                    <th rowspan="2">ENT</th>
+                    <th rowspan="2">Pending</th>
+                    <th rowspan="2">Net. Sales</th>
+                </tr>
+                <tr>
+                    <th>Received</th>
+                    <th>C. Back</th>
+                    <th>Tip</th>
+                    <th>Net</th>
+                    <th>Gross</th>
+                    <th>Net</th>
+                    <th>Plus</th>
+                    <th>Minus</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="16" style="text-align: center;"><b>LUNCH</b></td>
+                </tr>
+                <!-- Ground Lunch -->
+                <tr>
+                    <td colspan="16"><b>GROUND</b></td>
+                </tr>
+                <tr>
+                    <td>Table Sales</td>
+                    <td>45</td>
+                    <td>416,684</td>
+                    <td>408,801</td>
+                    <td>3,121</td>
+                    <td>65,628</td>
+                    <td>286,329</td>
+                    <td>81,154</td>
+                    <td>10,905</td>
+                    <td>123,456</td>
+                    <td>123,456</td>
+                    <td>123,456</td>
+                    <td>123,456</td>
+                    <td>123,456</td>
+                    <td>123,456</td>
+                    <td>324,825</td>
+                </tr>
+                <tr>
+                    <td>Drive-Thru</td>
+                    <td>86</td>
+                    <td>152,678</td>
+                    <td>151,810</td>
+                    <td>2,516</td>
+                    <td>12,750</td>
+                    <td>86,370</td>
+                    <td></td>
+                    <td>3,205</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>412,557</td>
+                </tr>
+                <tr>
+                    <td><b>GROUND</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                </tr>
+                <tr>
+                    <td colspan="16"><b>DELIVERY</b></td>
+                </tr>
+                <tr>
+                    <td>Drive-Thru</td>
+                    <td>86</td>
+                    <td>152,678</td>
+                    <td>151,810</td>
+                    <td>2,516</td>
+                    <td>12,750</td>
+                    <td>86,370</td>
+                    <td></td>
+                    <td>3,205</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>412,557</td>
+                </tr>
+                <!-- Dinner -->
+                <tr>
+                    <td>Home Delivery</td>
+                    <td>145</td>
+                    <td>1,736,848</td>
+                    <td>1,721,370</td>
+                    <td>15,425</td>
+                    <td>311,745</td>
+                    <td>437,681</td>
+                    <td>209,256</td>
+                    <td>191,903</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>3,501</td>
+                    <td>1,190,530</td>
+                </tr>
+                <tr>
+                    <td><b>DELIVERY</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                </tr>
+                <tr>
+                    <td><b>LUNCH</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                </tr>
+
+                <tr>
+                    <td colspan="16" style="text-align: center;"><b>DINNER</b></td>
+                </tr>
+                <tr>
+                    <td colspan="16"><b>GROUND</b></td>
+                </tr>
+                <tr>
+                    <td>Table Sales</td>
+                    <td>45</td>
+                    <td>416,684</td>
+                    <td>408,801</td>
+                    <td>3,121</td>
+                    <td>65,628</td>
+                    <td>286,329</td>
+                    <td>81,154</td>
+                    <td>10,905</td>
+                    <td>123,456</td>
+                    <td>123,456</td>
+                    <td>123,456</td>
+                    <td>123,456</td>
+                    <td>123,456</td>
+                    <td>123,456</td>
+                    <td>324,825</td>
+                </tr>
+                <tr>
+                    <td>Drive-Thru</td>
+                    <td>86</td>
+                    <td>152,678</td>
+                    <td>151,810</td>
+                    <td>2,516</td>
+                    <td>12,750</td>
+                    <td>86,370</td>
+                    <td></td>
+                    <td>3,205</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>412,557</td>
+                </tr>
+                <tr>
+                    <td><b>GROUND</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                </tr>
+                <tr>
+                    <td colspan="16"><b>ROOF</b></td>
+                </tr>
+                <tr>
+                    <td>Table Sales</td>
+                    <td>45</td>
+                    <td>416,684</td>
+                    <td>408,801</td>
+                    <td>3,121</td>
+                    <td>65,628</td>
+                    <td>286,329</td>
+                    <td>81,154</td>
+                    <td>10,905</td>
+                    <td>123,456</td>
+                    <td>123,456</td>
+                    <td>123,456</td>
+                    <td>123,456</td>
+                    <td>123,456</td>
+                    <td>123,456</td>
+                    <td>324,825</td>
+                </tr>
+                <tr>
+                    <td>Drive-Thru</td>
+                    <td>86</td>
+                    <td>152,678</td>
+                    <td>151,810</td>
+                    <td>2,516</td>
+                    <td>12,750</td>
+                    <td>86,370</td>
+                    <td></td>
+                    <td>3,205</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>412,557</td>
+                </tr>
+                <tr>
+                    <td><b>ROOF</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                </tr>
+                <tr>
+                    <td colspan="16"><b>DELIVERY</b></td>
+                </tr>
+                <tr>
+                    <td>Drive-Thru</td>
+                    <td>86</td>
+                    <td>152,678</td>
+                    <td>151,810</td>
+                    <td>2,516</td>
+                    <td>12,750</td>
+                    <td>86,370</td>
+                    <td></td>
+                    <td>3,205</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>412,557</td>
+                </tr>
+                <!-- Dinner -->
+                <tr>
+                    <td>Home Delivery</td>
+                    <td>145</td>
+                    <td>1,736,848</td>
+                    <td>1,721,370</td>
+                    <td>15,425</td>
+                    <td>311,745</td>
+                    <td>437,681</td>
+                    <td>209,256</td>
+                    <td>191,903</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>3,501</td>
+                    <td>1,190,530</td>
+                </tr>
+                <tr>
+                    <td><b>DELIVERY</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                </tr>
+                <tr>
+                    <td><b>DINNER</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                    <td><b>123,456</b></td>
+                </tr>
+                <!-- This Month -->
+                <tr>
+                    <td>This Month Total</td>
+                    <td>3,990</td>
+                    <td>32,801,608</td>
+                    <td>7,185,267</td>
+                    <td>284,251</td>
+                    <td>6,901,412</td>
+                    <td>19,150,391</td>
+                    <td>19,150,391</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1,086,226</td>
+                    <td>3,376,811</td>
+                    <td>26,914,308</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <div style="display: flex;justify-content: space-between;">
+            
+
+            <div>
+                <div style="display: flex;">
+                    <div>
+                        <!-- Reservations for Thursday -->
+                        <table class="reservations" border="1">
+                            <thead>
+                                <tr>
+                                    <th>Sales Type</th>
+                                </tr>
+                                <tr>
+                                    <th>Sales Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Drive-Thru</td>
+                                </tr>
+                                <tr>
+                                    <td>Home Delivery</td>
+                                </tr>
+                                <tr>
+                                    <td>Table Sales</td>
+                                </tr>
+                                <tr>
+                                    <td><b>
+                                            <center>Total</center>
+                                        </b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+    
+                    <div>
+    
+                    <!-- Today vs Last Week -->
+                    <table class="comparison" border="1">
+                        <thead>
+                            <tr>
+                                <th colspan="3">Today</th>
+                            </tr>
+                            <tr>
+                                <th>Orders</th>
+                                <th>Gross Sales</th>
+                                <th>Net Sales</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>648</td>
+                                <td>123,456</td>
+                                <td>3,777,634</td>
+                            </tr>
+                            <tr>
+                                <td>648</td>
+                                <td>123,456</td>
+                                <td>3,777,634</td>
+                            </tr>
+                            <tr>
+                                <td>648</td>
+                                <td>123,456</td>
+                                <td>3,777,634</td>
+                            </tr>
+                            <tr>
+                                <td><b>648</b></td>
+                                <td><b>123,456</b></td>
+                                <td><b>3,777,634</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+    
+                    <div>
+                        <!-- Today vs Last Week -->
+                    <table class="comparison" border="1">
+                        <thead>
+                            <tr>
+                                <th colspan="3">Progressive</th>
+                            </tr>
+                            <tr>
+                                <th>Orders</th>
+                                <th>Gross Sales</th>
+                                <th>Net Sales</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>648</td>
+                                <td>123,456</td>
+                                <td>3,777,634</td>
+                            </tr>
+                            <tr>
+                                <td>648</td>
+                                <td>123,456</td>
+                                <td>3,777,634</td>
+                            </tr>
+                            <tr>
+                                <td>648</td>
+                                <td>123,456</td>
+                                <td>3,777,634</td>
+                            </tr>
+                            <tr>
+                                <td><b>648</b></td>
+                                <td><b>123,456</b></td>
+                                <td><b>3,777,634</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                <div style="display: flex;">
+                    <!-- new code here  -->
+                    <div>
+                     <br>
+
+                        <!-- Reservations for Thursday -->
+                        <table class="reservations" border="1">
+                            <thead>
+                                <tr>
+                                    <th colspan="3" style="background-color: lightgreen;">Call Center Performence (Top 2 Orders Taken)</th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th>Call Agent</th>
+                                    <th># of Orders</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>DANIEL C AGENT</td>
+                                    <td>45</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>SALMAN CC</td>
+                                    <td>41</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+    
+                    <div>
+                        <br>
+    
+                    <!-- Today vs Last Week -->
+                    <table class="comparison" border="1">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Today</th>
+                            </tr>
+                            <tr>
+                                <th>Orders</th>
+                                <th>Calls</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>317</td>
+                                <td>239</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+    
+                    <div>
+                        <!-- Today vs Last Week -->
+                     <br>
+                    <div style="display: flex;flex-direction: column;">
+                        <div>
+                            <table class="comparison" border="1">
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: lightgreen;">Top Agent of the Month</th>
+                                        <th style="background-color: lightgreen;">Orders</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>DANIEL C AGENT</td>
+                                        <td>456</td>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <table class="comparison" border="1">
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: lightcoral;">Worst Agent of the Month</th>
+                                        <th style="background-color: lightcoral;">Orders</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>AMAN CC</td>
+                                        <td>44</td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <table class="comparison" border="1">
+                    <thead>
+                        <tr>
+                            <th colspan="3">Today Vs Last Week</th>
+                        </tr>
+                        <tr>
+                            <th>Sales Date</th>
+                            <th>%</th>
+                            <th>Net Sales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Thursday, May 30</td>
+                            <td>-6.0</td>
+                            <td>3,777,634</td>
+                        </tr>
+                        <!-- Dummy data -->
+                        <tr>
+                            <td>Friday, May 1</td>
+                            <td>2.5</td>
+                            <td>4,200,000</td>
+                        </tr>
+                        <tr>
+                            <td>Saturday, May 2</td>
+                            <td>1.8</td>
+                            <td>3,900,000</td>
+                        </tr>
+                        <tr>
+                            <td>Sunday, May 3</td>
+                            <td>3.2</td>
+                            <td>4,500,000</td>
+                        </tr>
+                        <!-- Add more rows for dummy data as needed -->
+                        <tr>
+                            <td>Friday, May 8</td>
+                            <td>-1.5</td>
+                            <td>3,800,000</td>
+                        </tr>
+                        <tr>
+                            <td>Saturday, May 9</td>
+                            <td>0.5</td>
+                            <td>4,000,000</td>
+                        </tr>
+                        <tr>
+                            <td>Sunday, May 10</td>
+                            <td>2.0</td>
+                            <td>4,300,000</td>
+                        </tr>
+                        <!-- Continue with dummy data until June 4 -->
+                        <tr>
+                            <td>Thursday, June 4</td>
+                            <td>1.2</td>
+                            <td>3,900,000</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><b><center>Total</center></b></td>
+                            <td><b>3,900,000</b></td>
+                        </tr>
+                        <tr>
+                            <td><b>Average</b></td>
+                            <td style="background-color: yellow;"><b>-21.4</b></td>
+                            <td style="background-color: yellow;"><b>3,900,000</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <table class="comparison" border="1">
+                    <thead>
+                        <tr>
+                            <th colspan="3">Reservation For Thursday 06-Jun</th>
+                        </tr>
+                        <tr>
+                            <th>Floor</th>
+                            <th>Event</th>
+                            <th># of Persons</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>First Floor</td>
+                            <td>Dinner</td>
+                            <td style="text-align: right;">109</td>
+                        </tr>
+                        <tr>
+                            <td>First Floor</td>
+                            <td>Lunch</td>
+                            <td style="text-align: right;">109</td>
+                        </tr>
+                        <tr>
+                            <td>Roof Top</td>
+                            <td>Dinner</td>
+                            <td style="text-align: right;">87</td>
+                        </tr>
+                        <tr>
+                            <td>Second Floor</td>
+                            <td>Dinner</td>
+                            <td style="text-align: right;">65</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><b><center>Total</center></b></td>
+                            <td style="text-align: right;"><b>432</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+
+            <div style="display: flex;flex-direction: column;">
+                <!-- Today vs Last Week -->
+                <table class="comparison" border="1">
+                    <thead>
+                        <tr>
+                            <th colspan="3">Today Vs last Wednesday</th>
+                        </tr>
+                        <tr>
+                            <th>Orders</th>
+                            <th>%</th>
+                            <th>Net Sales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: right;">648</td>
+                            <td style="background-color: lightgreen;text-align: right;">+7.1%</td>
+                            <td style="text-align: right;">3,777,634</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <table class="comparison" border="1">
+                    <thead>
+                        <tr>
+                            <th colspan="3" style="background-color: lightblue;">Today Top 3 Selling</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>CHICKEN TIKKA</b></td>
+                            <td style="text-align: right;">125</td>
+                            <td style="text-align: right;">37,634</td>
+                        </tr>
+                        <tr>
+                            <td><b>CHICKEN TIKKA</b></td>
+                            <td style="text-align: right;">125</td>
+                            <td style="text-align: right;">37,634</td>
+                        </tr>
+                        <tr>
+                            <td><b>CHICKEN TIKKA</b></td>
+                            <td style="text-align: right;">125</td>
+                            <td style="text-align: right;">37,634</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <!-- Bootstrap JS (optional, if you need bootstrap features like modal, dropdowns, etc.) -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+    <script src="script.js"></script>
+</body>
+
+</html>

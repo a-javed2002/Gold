@@ -229,9 +229,9 @@
                     var rowContent = `
                         <div class="col-md-12">
                             <div class="card">
-                                <h3>${goldType.title}</h3>
-                                <p>Sell Price: ${goldType.sellPriceGram.toFixed(2)} OMR per gram | ${goldType.sellPriceOunce.toFixed(2)} OMR per ounce</p>
-                                <p>Buy Price: ${goldType.buyPriceGram.toFixed(2)} OMR per gram | ${goldType.buyPriceOunce.toFixed(2)} OMR per ounce</p>
+                                <h3>${goldType.title} - ${data.price}</h3>
+                                <p>Sell Price: ${goldType.sellPriceGram.toFixed(3)} OMR per gram | ${goldType.sellPriceOunce.toFixed(3)} OMR per ounce</p>
+                                <p>Buy Price: ${goldType.buyPriceGram.toFixed(3)} OMR per gram | ${goldType.buyPriceOunce.toFixed(3)} OMR per ounce</p>
                             </div>
                         </div>
                     `;
