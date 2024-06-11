@@ -196,42 +196,33 @@
                 var dataRow = $('#data-row');
                 dataRow.empty(); // Clear previous data
 
-                // Assuming data.price is the price of 22K gold per ounce in USD
-                var ouncePrice22KUSD = data.price;
+                // Assuming data.price is the price of gold per ounce in USD
+                var ouncePrice = data.price;
 
-                // Sell prices in USD per ounce
-                var sellPrice24KUSD = ouncePrice22KUSD * (24 / 22);
-                var sellPrice21KUSD = ouncePrice22KUSD * (21 / 22);
-                var sellPrice18KUSD = ouncePrice22KUSD * (18 / 22);
+                // Sell prices
+                var price24KaratOman = (ouncePrice / 31.1035) * exchangeRate;
+                var price22KaratOman = price24KaratOman * 22 / 24;
+                var price21KaratOman = price24KaratOman * 21 / 24;
+                var price18KaratOman = price24KaratOman * 18 / 24;
 
-                // Sell prices in OMR per gram and ounce
-                var sellPrice24KOMRGram = (sellPrice24KUSD / 31.1035) * exchangeRate;
-                var sellPrice24KOMROunce = sellPrice24KUSD * exchangeRate;
-                var sellPrice22KOMRGram = (ouncePrice22KUSD / 31.1035) * exchangeRate;
-                var sellPrice22KOMROunce = ouncePrice22KUSD * exchangeRate;
-                var sellPrice21KOMRGram = (sellPrice21KUSD / 31.1035) * exchangeRate;
-                var sellPrice21KOMROunce = sellPrice21KUSD * exchangeRate;
-                var sellPrice18KOMRGram = (sellPrice18KUSD / 31.1035) * exchangeRate;
-                var sellPrice18KOMROunce = sellPrice18KUSD * exchangeRate;
+                // Buy prices calculations
+                var buyPrice24Karat = ((ouncePrice * 1.4485 + 10) / 10) / 11.664;
+                var buyPrice22Karat = buyPrice24Karat * 0.916;
+                var buyPrice21Karat = buyPrice24Karat * 0.880;
+                var buyPrice18Karat = buyPrice24Karat * 0.750;
 
-                            // Buy prices in OMR per gram
-                            var buyPrice24KOMRGram = ((ouncePrice22KUSD * 1.4485 + 10) / 10 / 11.664) * exchangeRate;
-                var buyPrice22KOMRGram = ((ouncePrice22KUSD * 1.4485 + 10) / 10 / 11.664 * 0.916) * exchangeRate;
-                var buyPrice21KOMRGram = ((ouncePrice22KUSD * 1.4485 + 10) / 10 / 11.664 * 0.880) * exchangeRate;
-                var buyPrice18KOMRGram = ((ouncePrice22KUSD * 1.4485 + 10) / 10 / 11.664 * 0.750) * exchangeRate;
+                // Convert buy prices to OMR
+                var buyPrice24KaratOman = buyPrice24Karat * exchangeRate;
+                var buyPrice22KaratOman = buyPrice22Karat * exchangeRate;
+                var buyPrice21KaratOman = buyPrice21Karat * exchangeRate;
+                var buyPrice18KaratOman = buyPrice18Karat * exchangeRate;
 
-                // Buy prices in OMR per ounce
-                var buyPrice24KOMROunce = buyPrice24KOMRGram * 31.1035;
-                var buyPrice22KOMROunce = buyPrice22KOMRGram * 31.1035;
-                var buyPrice21KOMROunce = buyPrice21KOMRGram * 31.1035;
-                var buyPrice18KOMROunce = buyPrice18KOMRGram * 31.1035;
-
-                // Create card elements for each type of gold
+                // Create rows
                 var goldTypes = [
-                    { title: '24 Karat', sellPriceGram: sellPrice24KOMRGram, sellPriceOunce: sellPrice24KOMROunce, buyPriceGram: buyPrice24KOMRGram, buyPriceOunce: buyPrice24KOMROunce },
-                    { title: '22 Karat', sellPriceGram: sellPrice22KOMRGram, sellPriceOunce: sellPrice22KOMROunce, buyPriceGram: buyPrice22KOMRGram, buyPriceOunce: buyPrice22KOMROunce },
-                    { title: '21 Karat', sellPriceGram: sellPrice21KOMRGram, sellPriceOunce: sellPrice21KOMROunce, buyPriceGram: buyPrice21KOMRGram, buyPriceOunce: buyPrice21KOMROunce },
-                    { title: '18 Karat', sellPriceGram: sellPrice18KOMRGram, sellPriceOunce: sellPrice18KOMROunce, buyPriceGram: buyPrice18KOMRGram, buyPriceOunce: buyPrice18KOMROunce }
+                    { title: '24 Karat', sellPriceGram: price24KaratOman, sellPriceOunce: price24KaratOman * 31.1035, buyPriceGram: buyPrice24KaratOman, buyPriceOunce: buyPrice24KaratOman * 31.1035 },
+                    { title: '22 Karat', sellPriceGram: price22KaratOman, sellPriceOunce: price22KaratOman * 31.1035, buyPriceGram: buyPrice22KaratOman, buyPriceOunce: buyPrice22KaratOman * 31.1035 },
+                    { title: '21 Karat', sellPriceGram: price21KaratOman, sellPriceOunce: price21KaratOman * 31.1035, buyPriceGram: buyPrice21KaratOman, buyPriceOunce: buyPrice21KaratOman * 31.1035 },
+                    { title: '18 Karat', sellPriceGram: price18KaratOman, sellPriceOunce: price18KaratOman * 31.1035, buyPriceGram: buyPrice18KaratOman, buyPriceOunce: buyPrice18KaratOman * 31.1035 }
                 ];
 
                 goldTypes.forEach(function (goldType) {
@@ -273,4 +264,3 @@
 </body>
 
 </html>
-
