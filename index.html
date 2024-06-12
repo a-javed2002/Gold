@@ -157,10 +157,10 @@
                 var price18KaratOman = (ouncePrice * 1.4485 + 10) / 10 / 11.664 * 0.75;
 
                 var goldTypes = [
-                    { title: '24 Karat', sellPrice: price24KaratOman, buyPrice: price24KaratOman * ((100-3.443)/100) },
-                    { title: '22 Karat', sellPrice: price22KaratOman, buyPrice: price22KaratOman * ((100-3.443)/100) },
-                    { title: '21 Karat', sellPrice: price21KaratOman, buyPrice: price21KaratOman * ((100-3.443)/100) },
-                    { title: '18 Karat', sellPrice: price18KaratOman, buyPrice: price18KaratOman * ((100-3.443)/100) }
+                    { title: '24 Karat', sellPrice: price24KaratOman, buyPrice: price24KaratOman - 1 },
+                    { title: '22 Karat', sellPrice: price22KaratOman, buyPrice: price22KaratOman - 2.5 },
+                    { title: '21 Karat', sellPrice: price21KaratOman, buyPrice: price21KaratOman - 2.5 },
+                    { title: '18 Karat', sellPrice: price18KaratOman, buyPrice: price18KaratOman - 2.5 }
                 ];
 
                 goldTypes.forEach(function (goldType) {
