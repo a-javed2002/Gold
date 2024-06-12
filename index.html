@@ -118,7 +118,11 @@
 
     <footer>
         <p><strong>&copy; 2024 Made by Love ♥</strong></p>
-        <p><strong>For software development, consultation, or any other service inquiries, feel free to contact us via WhatsApp or call at <a href="tel:+923110220412" style="font-size: 16px;"><b><u>+92 311 0220412</u></b></a>. You can also reach us via email at <a href="mailto:muhammadaayanfazal@gmail.com" style="font-size: 16px;"><b><u>muhammadaayanfazal@gmail.com</u></b></a></strong></p>
+        <p><strong>For software development, consultation, or any other service inquiries, feel free to contact us via
+                WhatsApp or call at <a href="tel:+923110220412" style="font-size: 16px;"><b><u>+92 311
+                            0220412</u></b></a>. You can also reach us via email at <a
+                    href="mailto:muhammadaayanfazal@gmail.com"
+                    style="font-size: 16px;"><b><u>muhammadaayanfazal@gmail.com</u></b></a></strong></p>
     </footer>
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -164,15 +168,27 @@
                 ];
 
                 goldTypes.forEach(function (goldType) {
+                    var titleContent = goldType.title;
+                    var sellPriceContent = goldType.sellPrice.toFixed(3) + " OMR";
+                    var buyPriceContent = goldType.buyPrice.toFixed(3) + " OMR";
+
+                    // Apply inline styles for 21 Karat
+                    if (goldType.title === '21 Karat') {
+                        titleContent = '<b style="font-size:20px;">' + goldType.title + '</b>';
+                        sellPriceContent = '<span style="font-size:20px;">' + sellPriceContent + '</span>';
+                        buyPriceContent = '<span style="font-size:20px;">' + buyPriceContent + '</span>';
+                    }
+
                     var rowContent = `
-                        <tr>
-                            <td class="eng"><small>${goldType.title}</small></td>
-                            <td class="eng"><small>${goldType.sellPrice.toFixed(3)} OMR</small></td>
-                            <td class="eng"><small>${goldType.buyPrice.toFixed(3)} OMR</small></td>
-                        </tr>
-                    `;
+        <tr>
+            <td class="eng"><small>${titleContent}</small></td>
+            <td class="eng"><small>${sellPriceContent}</small></td>
+            <td class="eng"><small>${buyPriceContent}</small></td>
+        </tr>
+    `;
                     goldPricesBody.append(rowContent);
                 });
+
 
                 var ouncePriceContent = `
                     <tr>
