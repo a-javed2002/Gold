@@ -134,7 +134,8 @@
                     method: 'GET',
                     success: function (response) {
                         currentPrice = response.price;
-                        fetchExchangeRate(response);
+                        $('#loader').hide();
+                        displayData(response);
                     },
                     error: function (xhr, status, error) {
                         $('#loader').hide();
@@ -143,47 +144,31 @@
                 });
             }
 
-            function fetchExchangeRate(goldData) {
-                $.ajax({
-                    url: 'https://api.exchangerate-api.com/v4/latest/USD',
-                    method: 'GET',
-                    success: function (response) {
-                        var usdToOmanRate = response.rates.OMR;
-                        $('#loader').hide();
-                        displayData(goldData, usdToOmanRate);
-                    },
-                    error: function (xhr, status, error) {
-                        $('#loader').hide();
-                        console.error('Error:', error);
-                    }
-                });
-            }
-
-            function displayData(data, exchangeRate) {
+            function displayData(data) {
                 var goldPricesBody = $('#gold-prices-body');
                 goldPricesBody.empty();
 
                 var ouncePrice = data.price;
-                var price24KaratOman = (ouncePrice / 31.1035) * exchangeRate;
-                var price22KaratOman = price24KaratOman * 22 / 24;
-                var price21KaratOman = price24KaratOman * 21 / 24;
-                var price18KaratOman = price24KaratOman * 18 / 24;
+                // var ouncePrice = 2337.60;
+
+                var price24KaratOman = (ouncePrice * 1.4485 + 10) / 10 / 11.664;
+                var price22KaratOman = (ouncePrice * 1.4485 + 10) / 10 / 11.664 * 0.916;
+                var price21KaratOman = (ouncePrice * 1.4485 + 10) / 10 / 11.664 * 0.88;
+                var price18KaratOman = (ouncePrice * 1.4485 + 10) / 10 / 11.664 * 0.75;
 
                 var goldTypes = [
-                    { title: '24 Karat', sellPrice: price24KaratOman },
-                    { title: '22 Karat', sellPrice: price22KaratOman },
-                    { title: '21 Karat', sellPrice: price21KaratOman },
-                    { title: '18 Karat', sellPrice: price18KaratOman }
+                    { title: '24 Karat', sellPrice: price24KaratOman, buyPrice: price24KaratOman * ((100-3.443)/100) },
+                    { title: '22 Karat', sellPrice: price22KaratOman, buyPrice: price22KaratOman * ((100-3.443)/100) },
+                    { title: '21 Karat', sellPrice: price21KaratOman, buyPrice: price21KaratOman * ((100-3.443)/100) },
+                    { title: '18 Karat', sellPrice: price18KaratOman, buyPrice: price18KaratOman * ((100-3.443)/100) }
                 ];
 
                 goldTypes.forEach(function (goldType) {
-                    var buyPrice = goldType.sellPrice * 0.975;  // Deduct 2.5%
-
                     var rowContent = `
                         <tr>
                             <td class="eng"><small>${goldType.title}</small></td>
                             <td class="eng"><small>${goldType.sellPrice.toFixed(3)} OMR</small></td>
-                            <td class="eng"><small>${buyPrice.toFixed(3)} OMR</small></td>
+                            <td class="eng"><small>${goldType.buyPrice.toFixed(3)} OMR</small></td>
                         </tr>
                     `;
                     goldPricesBody.append(rowContent);
