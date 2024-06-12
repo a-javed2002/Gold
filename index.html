@@ -13,27 +13,6 @@
             font-family: Arial, sans-serif;
         }
 
-        .card {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #f4d03f 0%, #f39c12 100%);
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .card h3 {
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-
         .loader {
             display: none;
             justify-content: center;
@@ -84,12 +63,26 @@
             background-color: #f9f9f9;
             margin-top: 20px;
         }
+
+        .GoldPriceTable th,
+        .GoldPriceTable td {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .GoldPriceTable th {
+            background-color: #f4d03f;
+        }
+
+        .GoldPriceTable td {
+            background-color: #f9f9f9;
+        }
     </style>
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
             <img src="logo.jpg" alt="Logo" style="width: 40px;">
         </a>
@@ -110,7 +103,7 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav> -->
 
     <div class="container">
         <div class="header">
@@ -122,17 +115,27 @@
                 </div>
                 <div class="time" id="current-time"></div>
             </div>
-            <button id="refresh-btn" class="btn btn-primary mt-3"><i class="fas fa-sync-alt"></i> Refresh Data</button>
         </div>
 
-        <div id="loader" class="loader">
+        <!-- <div id="loader" class="loader">
             <div class="spinner-border text-primary" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
-        </div>
+        </div> -->
 
-        <div id="data-row" class="row">
-            <!-- Data will be populated here -->
+        <div id="data-table">
+            <table class="table table-bordered GoldPriceTable">
+                <thead>
+                    <tr>
+                        <th class="ar">Carat &nbsp;/&nbsp;قيراط</th>
+                        <th class="ar">Sell &nbsp;/&nbsp;سعر البیع </th>
+                        <th class="ar">Buy &nbsp;/&nbsp;سعر الشراء </th>
+                    </tr>
+                </thead>
+                <tbody id="gold-prices-body">
+                    <!-- Data will be populated here -->
+                </tbody>
+            </table>
         </div>
 
     </div>
@@ -146,14 +149,18 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 Made by Love ♥</p>
+        <p><strong>&copy; 2024 Made by Love ♥</strong></p>
+        <p><strong>For software development, consultation, or any other service inquiries, feel free to contact us via WhatsApp or call at <a href="tel:+923110220412" style="font-size: 16px;"><b><u>+92 311 0220412</u></b></a>. You can also reach us via email at <a href="mailto:info@example.com" style="font-size: 16px;"><b><u>info@example.com</u></b></a></strong></p>
     </footer>
+        
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <script>
         $(document).ready(function () {
+            var currentPrice = null;
+
             // Function to fetch data from API
             function fetchData() {
                 $('#loader').show(); // Show loader
@@ -161,11 +168,14 @@
                     url: 'https://api.gold-api.com/price/XAU', // Replace with your API endpoint
                     method: 'GET',
                     success: function (response) {
-                        // On success, fetch exchange rate and display the data
-                        fetchExchangeRate(response);
+                        // if (response.price !== currentPrice) {
+                            currentPrice = response.price;
+                            fetchExchangeRate(response);
+                        // } else {
+                        //     $('#loader').hide(); // Hide loader if price is the same
+                        // }
                     },
                     error: function (xhr, status, error) {
-                        // On error, handle the error
                         $('#loader').hide(); // Hide loader
                         console.error('Error:', error);
                     }
@@ -178,13 +188,11 @@
                     url: 'https://api.exchangerate-api.com/v4/latest/USD', // Replace with your exchange rate API endpoint
                     method: 'GET',
                     success: function (response) {
-                        // On success, handle the exchange rate data
                         var usdToOmanRate = response.rates.OMR;
                         $('#loader').hide(); // Hide loader
                         displayData(goldData, usdToOmanRate);
                     },
                     error: function (xhr, status, error) {
-                        // On error, handle the error
                         $('#loader').hide(); // Hide loader
                         console.error('Error:', error);
                     }
@@ -193,71 +201,63 @@
 
             // Function to display data on the webpage
             function displayData(data, exchangeRate) {
-                var dataRow = $('#data-row');
-                dataRow.empty(); // Clear previous data
+                var goldPricesBody = $('#gold-prices-body');
+                goldPricesBody.empty(); // Clear previous data
 
-                // Assuming data.price is the price of 22K gold per ounce in USD
-                var ouncePrice22KUSD = data.price;
+                var ouncePrice = data.price;
 
-                // Sell prices in USD per ounce
-                var sellPrice24KUSD = ouncePrice22KUSD * (24 / 22);
-                var sellPrice21KUSD = ouncePrice22KUSD * (21 / 22);
-                var sellPrice18KUSD = ouncePrice22KUSD * (18 / 22);
+                // Sell prices
+                var price24KaratOman = (ouncePrice / 31.1035) * exchangeRate;
+                var price22KaratOman = price24KaratOman * 22 / 24;
+                var price21KaratOman = price24KaratOman * 21 / 24;
+                var price18KaratOman = price24KaratOman * 18 / 24;
 
-                // Sell prices in OMR per gram and ounce
-                var sellPrice24KOMRGram = (sellPrice24KUSD / 31.1035) * exchangeRate;
-                var sellPrice24KOMROunce = sellPrice24KUSD * exchangeRate;
-                var sellPrice22KOMRGram = (ouncePrice22KUSD / 31.1035) * exchangeRate;
-                var sellPrice22KOMROunce = ouncePrice22KUSD * exchangeRate;
-                var sellPrice21KOMRGram = (sellPrice21KUSD / 31.1035) * exchangeRate;
-                var sellPrice21KOMROunce = sellPrice21KUSD * exchangeRate;
-                var sellPrice18KOMRGram = (sellPrice18KUSD / 31.1035) * exchangeRate;
-                var sellPrice18KOMROunce = sellPrice18KUSD * exchangeRate;
+                // Buy prices calculations
+                var buyPrice24Karat = ((ouncePrice * 1.4485 + 10) / 10) / 11.664;
+                var buyPrice22Karat = buyPrice24Karat * 0.916;
+                var buyPrice21Karat = buyPrice24Karat * 0.880;
+                var buyPrice18Karat = buyPrice24Karat * 0.750;
 
-                            // Buy prices in OMR per gram
-                            var buyPrice24KOMRGram = ((ouncePrice22KUSD * 1.4485 + 10) / 10 / 11.664) * exchangeRate;
-                var buyPrice22KOMRGram = ((ouncePrice22KUSD * 1.4485 + 10) / 10 / 11.664 * 0.916) * exchangeRate;
-                var buyPrice21KOMRGram = ((ouncePrice22KUSD * 1.4485 + 10) / 10 / 11.664 * 0.880) * exchangeRate;
-                var buyPrice18KOMRGram = ((ouncePrice22KUSD * 1.4485 + 10) / 10 / 11.664 * 0.750) * exchangeRate;
+                var buyPrice24KaratOman = buyPrice24Karat * exchangeRate;
+                var buyPrice22KaratOman = buyPrice22Karat * exchangeRate;
+                var buyPrice21KaratOman = buyPrice21Karat * exchangeRate;
+                var buyPrice18KaratOman = buyPrice18Karat * exchangeRate;
 
-                // Buy prices in OMR per ounce
-                var buyPrice24KOMROunce = buyPrice24KOMRGram * 31.1035;
-                var buyPrice22KOMROunce = buyPrice22KOMRGram * 31.1035;
-                var buyPrice21KOMROunce = buyPrice21KOMRGram * 31.1035;
-                var buyPrice18KOMROunce = buyPrice18KOMRGram * 31.1035;
-
-                // Create card elements for each type of gold
                 var goldTypes = [
-                    { title: '24 Karat', sellPriceGram: sellPrice24KOMRGram, sellPriceOunce: sellPrice24KOMROunce, buyPriceGram: buyPrice24KOMRGram, buyPriceOunce: buyPrice24KOMROunce },
-                    { title: '22 Karat', sellPriceGram: sellPrice22KOMRGram, sellPriceOunce: sellPrice22KOMROunce, buyPriceGram: buyPrice22KOMRGram, buyPriceOunce: buyPrice22KOMROunce },
-                    { title: '21 Karat', sellPriceGram: sellPrice21KOMRGram, sellPriceOunce: sellPrice21KOMROunce, buyPriceGram: buyPrice21KOMRGram, buyPriceOunce: buyPrice21KOMROunce },
-                    { title: '18 Karat', sellPriceGram: sellPrice18KOMRGram, sellPriceOunce: sellPrice18KOMROunce, buyPriceGram: buyPrice18KOMRGram, buyPriceOunce: buyPrice18KOMROunce }
+                    { title: '24 Karat', sellPrice: price24KaratOman, buyPrice: buyPrice24KaratOman },
+                    { title: '22 Karat', sellPrice: price22KaratOman, buyPrice: buyPrice22KaratOman },
+                    { title: '21 Karat', sellPrice: price21KaratOman, buyPrice: buyPrice21KaratOman },
+                    { title: '18 Karat', sellPrice: price18KaratOman, buyPrice: buyPrice18KaratOman }
                 ];
 
                 goldTypes.forEach(function (goldType) {
                     var rowContent = `
-                        <div class="col-md-12">
-                            <div class="card">
-                                <h3>${goldType.title}</h3>
-                                <p>Sell Price: ${goldType.sellPriceGram.toFixed(2)} OMR per gram | ${goldType.sellPriceOunce.toFixed(2)} OMR per ounce</p>
-                                <p>Buy Price: ${goldType.buyPriceGram.toFixed(2)} OMR per gram | ${goldType.buyPriceOunce.toFixed(2)} OMR per ounce</p>
-                            </div>
-                        </div>
+                        <tr>
+                            <td class="eng"><small>${goldType.title}</small></td>
+                            <td class="eng"><small>${goldType.sellPrice.toFixed(3)} OMR</small></td>
+                            <td class="eng"><small>${goldType.buyPrice.toFixed(3)} OMR</small></td>
+                        </tr>
                     `;
-                    dataRow.append(rowContent);
+                    goldPricesBody.append(rowContent);
                 });
 
-                var updatedAtContent = `<p class="text-center w-100">Last Updated: ${data.updatedAtReadable}</p>`;
-                dataRow.append(updatedAtContent);
+                var ouncePriceContent = `
+                    <tr>
+                        <td class="eng gYellowText"><small><strong>Ounce Price</strong></small></td>
+                        <td class="eng gGreyText" colspan="2"><strong>$${ouncePrice.toFixed(2)}</strong></td>
+                    </tr>
+                `;
+                goldPricesBody.append(ouncePriceContent);
+
+                var updatedAtContent = `<tr><td colspan="3" class="text-center"><small>Last Updated: ${data.updatedAtReadable}</small></td></tr>`;
+                goldPricesBody.append(updatedAtContent);
             }
 
             // Fetch data when the page loads
             fetchData();
 
-            // Refresh data on button click
-            $('#refresh-btn').click(function () {
-                fetchData();
-            });
+            // Refresh data every 15 seconds
+            setInterval(fetchData, 15000);
 
             // Function to update the current time
             function updateTime() {
@@ -273,4 +273,3 @@
 </body>
 
 </html>
-
