@@ -72,10 +72,12 @@
 
         .GoldPriceTable th {
             background-color: #f4d03f;
+            border: 2px solid black !important;
         }
 
         .GoldPriceTable td {
             background-color: #f9f9f9;
+            border: 2px solid black !important;
         }
 
         .GoldPriceTable tr:nth-child(3) td:nth-child(1) {
@@ -155,6 +157,8 @@
                 transform: translateX(-100%);
             }
         }
+
+
     </style>
 </head>
 
@@ -190,7 +194,7 @@
             </div>
 
             <div id="data-table">
-                <table class="table table-bordered GoldPriceTable">
+                <table class="table table-bordered GoldPriceTable" border="1">
                     <thead>
                         <tr>
                             <th class="ar">Carat &nbsp;/&nbsp;قيراط</th>
@@ -355,8 +359,10 @@
 
             function updateTime() {
                 var now = new Date();
-                var timeString = now.toLocaleTimeString();
-                $('#current-time').text(timeString);
+                var dateString = now.toLocaleDateString(); // Get the date string
+                var timeString = now.toLocaleTimeString(); // Get the time string
+                var dateTimeString = dateString + ' ' + timeString; // Combine date and time
+                $('#current-time').text(dateTimeString); // Update the element with date and time
             }
         });
     </script>
