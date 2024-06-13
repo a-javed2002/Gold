@@ -359,11 +359,14 @@
 
             function updateTime() {
                 var now = new Date();
+                var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                var day = days[now.getDay()]; // Get the day string
                 var dateString = now.toLocaleDateString(); // Get the date string
                 var timeString = now.toLocaleTimeString(); // Get the time string
-                var dateTimeString = dateString + ' ' + timeString; // Combine date and time
-                $('#current-time').text(dateTimeString); // Update the element with date and time
+                var dateTimeString = day + ', ' + dateString + ' ' + timeString; // Combine day, date, and time
+                $('#current-time').text(dateTimeString); // Update the element with day, date, and time
             }
+
         });
     </script>
 </body>
