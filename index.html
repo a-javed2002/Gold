@@ -78,6 +78,21 @@
             background-color: #f9f9f9;
         }
 
+        .GoldPriceTable tr:nth-child(3) td:nth-child(1) {
+            background-color: black;
+            color: white;
+        }
+
+        .GoldPriceTable tr:nth-child(3) td:nth-child(2) {
+            background-color: green;
+            color: white;
+        }
+
+        .GoldPriceTable tr:nth-child(3) td:nth-child(3) {
+            background-color: red;
+            color: white;
+        }
+
         .login-container {
             max-width: 400px;
             margin: 50px auto;
@@ -88,58 +103,58 @@
         }
 
         .marquee-ar,
-.marquee-en {
-    overflow: hidden;
-    white-space: nowrap;
-    box-sizing: border-box;
-}
+        .marquee-en {
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
 
-.marquee-ar {
-    background-color: #38a238;
-    color: #ffffff;
-    padding: 10px;
-}
+        .marquee-ar {
+            background-color: #38a238;
+            color: #ffffff;
+            padding: 10px;
+        }
 
-.marquee-en {
-    background-color: #000000;
-    color: #ffffff;
-    padding: 10px;
-}
+        .marquee-en {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 10px;
+        }
 
-.marquee-ar span,
-.marquee-en span {
-    display: inline-block;
-    animation: marquee-ar 50s linear infinite; /* Adjust duration here */
-}
+        .marquee-ar span,
+        .marquee-en span {
+            display: inline-block;
+            animation: marquee-ar 50s linear infinite;
+            /* Adjust duration here */
+        }
 
-.marquee-ar span {
-    animation-name: marquee-ar;
-}
+        .marquee-ar span {
+            animation-name: marquee-ar;
+        }
 
-.marquee-en span {
-    animation-name: marquee-en;
-}
+        .marquee-en span {
+            animation-name: marquee-en;
+        }
 
-@keyframes marquee-ar {
-    0% {
-        transform: translateX(-100%);
-    }
+        @keyframes marquee-ar {
+            0% {
+                transform: translateX(-100%);
+            }
 
-    100% {
-        transform: translateX(100%);
-    }
-}
+            100% {
+                transform: translateX(100%);
+            }
+        }
 
-@keyframes marquee-en {
-    0% {
-        transform: translateX(100%);
-    }
+        @keyframes marquee-en {
+            0% {
+                transform: translateX(100%);
+            }
 
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
+            100% {
+                transform: translateX(-100%);
+            }
+        }
     </style>
 </head>
 
@@ -163,7 +178,7 @@
 
         <div id="gold-rates-container" style="display:none;">
             <div class="header">
-                <h2>Gold Rates</h2>
+                <h2><b><u>Gold Rates</u></b></h2>
                 <div>
                     <div class="flag">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Oman.svg" alt="Oman Flag">
@@ -171,6 +186,7 @@
                     </div>
                     <div class="time" id="current-time"></div>
                 </div>
+                <button id="logout-button" class="btn btn-danger">Logout</button>
             </div>
 
             <div id="data-table">
@@ -191,19 +207,29 @@
 
         <div class="marquee-ar" id="marquee-ar" style="display:none;">
             <span>
-                حَدَّثَنَا أَبُو بَكْرِ بْنُ أَبِي شَيْبَةَ، وَعَمْرٌو النَّاقِدُ، وَإِسْحَاقُ بْنُ إِبْرَاهِيمَ، - وَاللَّفْظُ لاِبْنِ أَبِي شَيْبَةَ - قَالَ إِسْحَاقُ أَخْبَرَنَا وَقَالَ الآخَرَانِ، حَدَّثَنَا وَكِيعٌ، حَدَّثَنَا سُفْيَانُ، عَنْ خَالِدٍ، الْحَذَّاءِ عَنْ أَبِي قِلاَبَةَ، عَنْ أَبِي الأَشْعَثِ، عَنْ عُبَادَةَ بْنِ الصَّامِتِ، قَالَ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏ "‏ الذَّهَبُ بِالذَّهَبِ وَالْفِضَّةُ بِالْفِضَّةِ وَالْبُرُّ بِالْبُرِّ وَالشَّعِيرُ بِالشَّعِيرِ وَالتَّمْرُ بِالتَّمْرِ وَالْمِلْحُ بِالْمِلْحِ مِثْلاً بِمِثْلٍ سَوَاءً بِسَوَاءٍ يَدًا بِيَدٍ فَإِذَا اخْتَلَفَتْ هَذِهِ الأَصْنَافُ فَبِيعُوا كَيْفَ شِئْتُمْ إِذَا كَانَ يَدًا بِيَدٍ ‏"‏ ‏. | عمان سعر الذهب | مصنعيه | تشكيلات | سعودي طيبه٣.٨٠٠ - ٤.٨٠٠ | تركي ٣.٥٠٠ - ٤.٥٠٠ | بحريني ٢.٥٠٠ - ٣.٥٠٠ | كويتي٣.٠٠٠ - ٤.٠٠٠ | عماني ٢.٠٠٠- ٢.٥٠٠ | (بعض رسوم تصنيع السلع المختارة ستكون لكل قطعة)
+                حَدَّثَنَا أَبُو بَكْرِ بْنُ أَبِي شَيْبَةَ، وَعَمْرٌو النَّاقِدُ، وَإِسْحَاقُ بْنُ إِبْرَاهِيمَ، -
+                وَاللَّفْظُ لاِبْنِ أَبِي شَيْبَةَ - قَالَ إِسْحَاقُ أَخْبَرَنَا وَقَالَ الآخَرَانِ، حَدَّثَنَا وَكِيعٌ،
+                حَدَّثَنَا سُفْيَانُ، عَنْ خَالِدٍ، الْحَذَّاءِ عَنْ أَبِي قِلاَبَةَ، عَنْ أَبِي الأَشْعَثِ، عَنْ
+                عُبَادَةَ بْنِ الصَّامِتِ، قَالَ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏ "‏ الذَّهَبُ بِالذَّهَبِ
+                وَالْفِضَّةُ بِالْفِضَّةِ وَالْبُرُّ بِالْبُرِّ وَالشَّعِيرُ بِالشَّعِيرِ وَالتَّمْرُ بِالتَّمْرِ
+                وَالْمِلْحُ بِالْمِلْحِ مِثْلاً بِمِثْلٍ سَوَاءً بِسَوَاءٍ يَدًا بِيَدٍ فَإِذَا اخْتَلَفَتْ هَذِهِ
+                الأَصْنَافُ فَبِيعُوا كَيْفَ شِئْتُمْ إِذَا كَانَ يَدًا بِيَدٍ ‏"‏ ‏. | عمان سعر الذهب | مصنعيه |
+                تشكيلات | سعودي طيبه٣.٨٠٠ - ٤.٨٠٠ | تركي ٣.٥٠٠ - ٤.٥٠٠ | بحريني ٢.٥٠٠ - ٣.٥٠٠ | كويتي٣.٠٠٠ - ٤.٠٠٠ |
+                عماني ٢.٠٠٠- ٢.٥٠٠ | (بعض رسوم تصنيع السلع المختارة ستكون لكل قطعة)
             </span>
         </div>
 
         <div class="marquee-en" id="marquee-en" style="display:none;">
             <span>
-                | Oman Gold Rate | Making Charges | Saudi Taiba 3.800 - 4.800 | Turkish 3.500 - 4.500 | Bahraini 2.500 - 3.500 | Kuwaiti 3.000 - 4.000 | Omani 2.000 - 2.500 | Some Selected Good's Making Charges Will Be Per Piece | پرانے سونے کو نئے سونے سے بدلنا اور قیمت میں فرق ادا کرنا جائز نہیں۔
+                | Oman Gold Rate | Making Charges | Saudi Taiba 3.800 - 4.800 | Turkish 3.500 - 4.500 | Bahraini 2.500 -
+                3.500 | Kuwaiti 3.000 - 4.000 | Omani 2.000 - 2.500 | Some Selected Good's Making Charges Will Be Per
+                Piece | پرانے سونے کو نئے سونے سے بدلنا اور قیمت میں فرق ادا کرنا جائز نہیں۔
             </span>
         </div>
     </div>
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
             var users = [
@@ -219,6 +245,13 @@
                 { username: 'user10', password: 'password10' },
             ];
 
+            // Check if user is logged in
+            if (localStorage.getItem('loggedIn')) {
+                showGoldRates();
+            } else {
+                $('#login-container').show();
+            }
+
             $('#login-form').on('submit', function (e) {
                 e.preventDefault();
                 var username = $('#username').val();
@@ -226,17 +259,27 @@
                 var validUser = users.find(user => user.username === username && user.password === password);
 
                 if (validUser) {
-                    $('#login-container').hide();
-                    $('#gold-rates-container').show();
-                    $('#marquee-ar').show();
-                    $('#marquee-en').show();
-                    fetchData();
-                    setInterval(fetchData, 15000);
-                    setInterval(updateTime, 1000);
+                    localStorage.setItem('loggedIn', username);
+                    showGoldRates();
                 } else {
                     $('#login-error').show();
                 }
             });
+
+            $('#logout-button').on('click', function () {
+                localStorage.removeItem('loggedIn');
+                location.reload();
+            });
+
+            function showGoldRates() {
+                $('#login-container').hide();
+                $('#gold-rates-container').show();
+                $('#marquee-ar').show();
+                $('#marquee-en').show();
+                fetchData();
+                setInterval(fetchData, 15000);
+                setInterval(updateTime, 1000);
+            }
 
             function fetchData() {
                 $.ajax({
@@ -272,27 +315,36 @@
                     var titleContent = goldType.title;
                     var sellPriceContent = goldType.sellPrice.toFixed(3) + " OMR";
                     var buyPriceContent = goldType.buyPrice.toFixed(3) + " OMR";
+                    var rowContent = ``;
 
+                    titleContent = '<b style="font-size:20px;">' + goldType.title + '</b>';
+                    sellPriceContent = '<span style="font-size:20px;">' + sellPriceContent + '</span>';
+                    buyPriceContent = '<span style="font-size:20px;">' + buyPriceContent + '</span>';
                     if (goldType.title === '21 Karat') {
-                        titleContent = '<b style="font-size:20px;">' + goldType.title + '</b>';
-                        sellPriceContent = '<span style="font-size:20px;">' + sellPriceContent + '</span>';
-                        buyPriceContent = '<span style="font-size:20px;">' + buyPriceContent + '</span>';
-                    }
-
-                    var rowContent = `
+                        rowContent = `
                         <tr>
                             <td class="eng"><small>${titleContent}</small></td>
                             <td class="eng"><small>${sellPriceContent}</small></td>
                             <td class="eng"><small>${buyPriceContent}</small></td>
                         </tr>
                     `;
+                    }
+                    else {
+                        rowContent = `
+                        <tr>
+                            <td class="eng"><small>${titleContent}</small></td>
+                            <td class="eng"><small>${sellPriceContent}</small></td>
+                            <td class="eng"><small>${buyPriceContent}</small></td>
+                        </tr>
+                            `;
+                    }
                     goldPricesBody.append(rowContent);
                 });
 
                 var ouncePriceContent = `
                     <tr>
-                        <td class="eng gYellowText"><small><strong>Ounce Price</strong></small></td>
-                        <td class="eng gGreyText" colspan="2"><strong>$${ouncePrice.toFixed(2)}</strong></td>
+                        <td class="eng gYellowText" style="background-color: #f4d03f;"><small><strong><b style="font-size:20px;">Ounce Price</b></strong></small></td>
+                        <td class="eng gGreyText" colspan="2"><strong style="font-size:20px;">$${ouncePrice.toFixed(2)}</strong></td>
                     </tr>
                 `;
                 goldPricesBody.append(ouncePriceContent);
@@ -309,5 +361,6 @@
         });
     </script>
 </body>
+
 
 </html>

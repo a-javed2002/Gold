@@ -77,6 +77,11 @@
         .GoldPriceTable td {
             background-color: #f9f9f9;
         }
+
+        .GoldPriceTable tr:nth-child(3) td:nth-child(1) {
+            background-color: #ffcccb;
+            /* Change this to your desired color */
+        }
     </style>
 </head>
 
@@ -192,7 +197,7 @@
 
                 var ouncePriceContent = `
                     <tr>
-                        <td class="eng gYellowText"><small><strong>Ounce Price</strong></small></td>
+                        <td class="eng gYellowText" style="background-color: #f4d03f;"><small><strong>Ounce Price</strong></small></td>
                         <td class="eng gGreyText" colspan="2"><strong>$${ouncePrice.toFixed(2)}</strong></td>
                     </tr>
                 `;
@@ -211,7 +216,7 @@
                 $('#current-time').text(timeString);
             }
 
-            setInterval(updateTime, 1000);
+            // setInterval(updateTime, 1000);
         });
     </script>
 </body>
