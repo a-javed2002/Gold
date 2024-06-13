@@ -45,7 +45,7 @@
             font-size: 1.2em;
         }
 
-        .marquee-ar {
+        /* .marquee-ar {
             background-color: #38a238;
             color: #ffffff;
             padding: 10px;
@@ -55,7 +55,7 @@
             background-color: #000000;
             color: #ffffff;
             padding: 10px;
-        }
+        } */
 
         footer {
             text-align: center;
@@ -86,6 +86,60 @@
             border-radius: 5px;
             background-color: #f9f9f9;
         }
+
+        .marquee-ar,
+.marquee-en {
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.marquee-ar {
+    background-color: #38a238;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.marquee-en {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.marquee-ar span,
+.marquee-en span {
+    display: inline-block;
+    animation: marquee-ar 50s linear infinite; /* Adjust duration here */
+}
+
+.marquee-ar span {
+    animation-name: marquee-ar;
+}
+
+.marquee-en span {
+    animation-name: marquee-en;
+}
+
+@keyframes marquee-ar {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes marquee-en {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
     </style>
 </head>
 
@@ -136,10 +190,15 @@
         </div>
 
         <div class="marquee-ar" id="marquee-ar" style="display:none;">
-            <marquee direction="left">مرحبا بكم في أسعار الذهب</marquee>
+            <span>
+                حَدَّثَنَا أَبُو بَكْرِ بْنُ أَبِي شَيْبَةَ، وَعَمْرٌو النَّاقِدُ، وَإِسْحَاقُ بْنُ إِبْرَاهِيمَ، - وَاللَّفْظُ لاِبْنِ أَبِي شَيْبَةَ - قَالَ إِسْحَاقُ أَخْبَرَنَا وَقَالَ الآخَرَانِ، حَدَّثَنَا وَكِيعٌ، حَدَّثَنَا سُفْيَانُ، عَنْ خَالِدٍ، الْحَذَّاءِ عَنْ أَبِي قِلاَبَةَ، عَنْ أَبِي الأَشْعَثِ، عَنْ عُبَادَةَ بْنِ الصَّامِتِ، قَالَ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏ "‏ الذَّهَبُ بِالذَّهَبِ وَالْفِضَّةُ بِالْفِضَّةِ وَالْبُرُّ بِالْبُرِّ وَالشَّعِيرُ بِالشَّعِيرِ وَالتَّمْرُ بِالتَّمْرِ وَالْمِلْحُ بِالْمِلْحِ مِثْلاً بِمِثْلٍ سَوَاءً بِسَوَاءٍ يَدًا بِيَدٍ فَإِذَا اخْتَلَفَتْ هَذِهِ الأَصْنَافُ فَبِيعُوا كَيْفَ شِئْتُمْ إِذَا كَانَ يَدًا بِيَدٍ ‏"‏ ‏. | عمان سعر الذهب | مصنعيه | تشكيلات | سعودي طيبه٣.٨٠٠ - ٤.٨٠٠ | تركي ٣.٥٠٠ - ٤.٥٠٠ | بحريني ٢.٥٠٠ - ٣.٥٠٠ | كويتي٣.٠٠٠ - ٤.٠٠٠ | عماني ٢.٠٠٠- ٢.٥٠٠ | (بعض رسوم تصنيع السلع المختارة ستكون لكل قطعة)
+            </span>
         </div>
+
         <div class="marquee-en" id="marquee-en" style="display:none;">
-            <marquee direction="right">Welcome to Gold Rates</marquee>
+            <span>
+                | Oman Gold Rate | Making Charges | Saudi Taiba 3.800 - 4.800 | Turkish 3.500 - 4.500 | Bahraini 2.500 - 3.500 | Kuwaiti 3.000 - 4.000 | Omani 2.000 - 2.500 | Some Selected Good's Making Charges Will Be Per Piece | پرانے سونے کو نئے سونے سے بدلنا اور قیمت میں فرق ادا کرنا جائز نہیں۔
+            </span>
         </div>
     </div>
 
@@ -152,7 +211,12 @@
                 { username: 'user2', password: 'password2' },
                 { username: 'user3', password: 'password3' },
                 { username: 'user4', password: 'password4' },
-                { username: 'user5', password: 'password5' }
+                { username: 'user5', password: 'password5' },
+                { username: 'user6', password: 'password6' },
+                { username: 'user7', password: 'password7' },
+                { username: 'user8', password: 'password8' },
+                { username: 'user9', password: 'password9' },
+                { username: 'user10', password: 'password10' },
             ];
 
             $('#login-form').on('submit', function (e) {
