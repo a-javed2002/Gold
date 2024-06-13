@@ -77,111 +77,72 @@
         .GoldPriceTable td {
             background-color: #f9f9f9;
         }
-
-        .login-container {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="login-container" id="login-container">
-            <h2 class="text-center">Login</h2>
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" required>
+        <div class="header">
+            <h2>Gold Rates</h2>
+            <div>
+                <div class="flag">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Oman.svg" alt="Oman Flag">
+                    <div>Oman</div>
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" required>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Login</button>
-            </form>
-            <div id="login-error" class="text-danger mt-3" style="display:none;">Invalid username or password</div>
-        </div>
-
-        <div id="gold-rates-container" style="display:none;">
-            <div class="header">
-                <h2>Gold Rates</h2>
-                <div>
-                    <div class="flag">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Oman.svg" alt="Oman Flag">
-                        <div>Oman</div>
-                    </div>
-                    <div class="time" id="current-time"></div>
-                </div>
-            </div>
-
-            <div id="data-table">
-                <table class="table table-bordered GoldPriceTable">
-                    <thead>
-                        <tr>
-                            <th class="ar">Carat &nbsp;/&nbsp;قيراط</th>
-                            <th class="ar">Sell &nbsp;/&nbsp;سعر البیع </th>
-                            <th class="ar">Buy &nbsp;/&nbsp;سعر الشراء </th>
-                        </tr>
-                    </thead>
-                    <tbody id="gold-prices-body">
-                        <!-- Data will be populated here -->
-                    </tbody>
-                </table>
+                <div class="time" id="current-time"></div>
             </div>
         </div>
 
-        <div class="marquee-ar" id="marquee-ar" style="display:none;">
-            <marquee direction="left">مرحبا بكم في أسعار الذهب</marquee>
-        </div>
-        <div class="marquee-en" id="marquee-en" style="display:none;">
-            <marquee direction="right">Welcome to Gold Rates</marquee>
+        <div id="data-table">
+            <table class="table table-bordered GoldPriceTable">
+                <thead>
+                    <tr>
+                        <th class="ar">Carat &nbsp;/&nbsp;قيراط</th>
+                        <th class="ar">Sell &nbsp;/&nbsp;سعر البیع </th>
+                        <th class="ar">Buy &nbsp;/&nbsp;سعر الشراء </th>
+                    </tr>
+                </thead>
+                <tbody id="gold-prices-body">
+                    <!-- Data will be populated here -->
+                </tbody>
+            </table>
         </div>
     </div>
+
+    <div class="marquee-ar">
+        <marquee direction="left">مرحبا بكم في أسعار الذهب</marquee>
+    </div>
+    <div class="marquee-en">
+        <marquee direction="right">Welcome to Gold Rates</marquee>
+    </div>
+
+    <!-- <footer>
+        <p><strong>&copy; 2024 Made by Love ♥</strong></p>
+        <p><strong>For software development, consultation, or any other service inquiries, feel free to contact us via
+                WhatsApp or call at <a href="tel:+923110220412" style="font-size: 16px;"><b><u>+92 311
+                            0220412</u></b></a>. You can also reach us via email at <a
+                    href="mailto:muhammadaayanfazal@gmail.com"
+                    style="font-size: 16px;"><b><u>muhammadaayanfazal@gmail.com</u></b></a></strong></p>
+    </footer> -->
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <script>
         $(document).ready(function () {
-            var users = [
-                { username: 'user1', password: 'password1' },
-                { username: 'user2', password: 'password2' },
-                { username: 'user3', password: 'password3' },
-                { username: 'user4', password: 'password4' },
-                { username: 'user5', password: 'password5' }
-            ];
-
-            $('#login-form').on('submit', function (e) {
-                e.preventDefault();
-                var username = $('#username').val();
-                var password = $('#password').val();
-                var validUser = users.find(user => user.username === username && user.password === password);
-
-                if (validUser) {
-                    $('#login-container').hide();
-                    $('#gold-rates-container').show();
-                    $('#marquee-ar').show();
-                    $('#marquee-en').show();
-                    fetchData();
-                    setInterval(fetchData, 15000);
-                    setInterval(updateTime, 1000);
-                } else {
-                    $('#login-error').show();
-                }
-            });
+            var currentPrice = null;
 
             function fetchData() {
+                $('#loader').show();
                 $.ajax({
                     url: 'https://api.gold-api.com/price/XAU',
                     method: 'GET',
                     success: function (response) {
+                        currentPrice = response.price;
+                        $('#loader').hide();
                         displayData(response);
                     },
                     error: function (xhr, status, error) {
+                        $('#loader').hide();
                         console.error('Error:', error);
                     }
                 });
@@ -192,6 +153,8 @@
                 goldPricesBody.empty();
 
                 var ouncePrice = data.price;
+                // var ouncePrice = 2337.60;
+
                 var price24KaratOman = (ouncePrice * 1.4485 + 10) / 10 / 11.664;
                 var price22KaratOman = (ouncePrice * 1.4485 + 10) / 10 / 11.664 * 0.916;
                 var price21KaratOman = (ouncePrice * 1.4485 + 10) / 10 / 11.664 * 0.88;
@@ -209,6 +172,7 @@
                     var sellPriceContent = goldType.sellPrice.toFixed(3) + " OMR";
                     var buyPriceContent = goldType.buyPrice.toFixed(3) + " OMR";
 
+                    // Apply inline styles for 21 Karat
                     if (goldType.title === '21 Karat') {
                         titleContent = '<b style="font-size:20px;">' + goldType.title + '</b>';
                         sellPriceContent = '<span style="font-size:20px;">' + sellPriceContent + '</span>';
@@ -216,14 +180,15 @@
                     }
 
                     var rowContent = `
-                        <tr>
-                            <td class="eng"><small>${titleContent}</small></td>
-                            <td class="eng"><small>${sellPriceContent}</small></td>
-                            <td class="eng"><small>${buyPriceContent}</small></td>
-                        </tr>
-                    `;
+        <tr>
+            <td class="eng"><small>${titleContent}</small></td>
+            <td class="eng"><small>${sellPriceContent}</small></td>
+            <td class="eng"><small>${buyPriceContent}</small></td>
+        </tr>
+    `;
                     goldPricesBody.append(rowContent);
                 });
+
 
                 var ouncePriceContent = `
                     <tr>
@@ -237,11 +202,16 @@
                 goldPricesBody.append(updatedAtContent);
             }
 
+            fetchData();
+            setInterval(fetchData, 15000);
+
             function updateTime() {
                 var now = new Date();
                 var timeString = now.toLocaleTimeString();
                 $('#current-time').text(timeString);
             }
+
+            setInterval(updateTime, 1000);
         });
     </script>
 </body>
