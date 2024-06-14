@@ -9,8 +9,16 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
+        html,
         body {
             font-family: Arial, sans-serif;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: scroll;
+            font-size: 1.3rem;
+            font-weight: bolder;
+            /* Prevents scrollbars */
         }
 
         .loader {
@@ -158,12 +166,18 @@
             }
         }
 
+        /* th,td {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		} */
 
+        
     </style>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container content">
         <div class="login-container" id="login-container">
             <h2 class="text-center">Login</h2>
             <form id="login-form">
@@ -183,13 +197,13 @@
         <div id="gold-rates-container" style="display:none;">
             <div class="header">
                 <!--<h2><b><u>Gold Rates</u></b></h2>-->
-                <div style="display:flex;">
+                <!-- <div style="display:flex;">
                     <div class="flag" style="display:flex;flex-direction:column">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Oman.svg" alt="Oman Flag">
                         <span>Oman</span>
                     </div>
-                </div>
-                    <div class="time" id="current-time" style="font-size:1rem;"></div>
+                </div> -->
+                <div class="time" id="current-time" style="font-size:1rem;"></div>
             </div>
 
             <div id="data-table">
@@ -229,7 +243,10 @@
                 Piece | پرانے سونے کو نئے سونے سے بدلنا اور قیمت میں فرق ادا کرنا جائز نہیں۔
             </span>
         </div>
-        <button id="logout-button" class="btn btn-danger w-100 mt-3">Logout</button>
+
+        <div>
+        <button id="logout-button" style="display: none;" class="btn btn-danger w-100 mt-3">Logout</button>
+        </div>
     </div>
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -280,6 +297,7 @@
                 $('#gold-rates-container').show();
                 $('#marquee-ar').show();
                 $('#marquee-en').show();
+                $('#logout-button').show();
                 fetchData();
                 setInterval(fetchData, 15000);
                 setInterval(updateTime, 1000);
