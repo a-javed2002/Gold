@@ -182,15 +182,14 @@
 
         <div id="gold-rates-container" style="display:none;">
             <div class="header">
-                <h2><b><u>Gold Rates</u></b></h2>
-                <div>
-                    <div class="flag">
+                <!--<h2><b><u>Gold Rates</u></b></h2>-->
+                <div style="display:flex;">
+                    <div class="flag" style="display:flex;flex-direction:column">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Oman.svg" alt="Oman Flag">
-                        <div>Oman</div>
+                        <span>Oman</span>
                     </div>
-                    <div class="time" id="current-time"></div>
                 </div>
-                <button id="logout-button" class="btn btn-danger">Logout</button>
+                    <div class="time" id="current-time" style="font-size:1rem;"></div>
             </div>
 
             <div id="data-table">
@@ -230,6 +229,7 @@
                 Piece | پرانے سونے کو نئے سونے سے بدلنا اور قیمت میں فرق ادا کرنا جائز نہیں۔
             </span>
         </div>
+        <button id="logout-button" class="btn btn-danger w-100 mt-3">Logout</button>
     </div>
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
