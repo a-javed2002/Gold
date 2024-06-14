@@ -15,10 +15,13 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            overflow: scroll;
             font-size: 1.3rem;
             font-weight: bolder;
             /* Prevents scrollbars */
+        }
+
+        body{
+            overflow: scroll;
         }
 
         .loader {
@@ -134,7 +137,7 @@
         .marquee-ar span,
         .marquee-en span {
             display: inline-block;
-            animation: marquee-ar 50s linear infinite;
+            animation: marquee-ar 120s linear infinite;
             /* Adjust duration here */
         }
 
@@ -177,7 +180,7 @@
 </head>
 
 <body>
-    <div class="container content">
+    <div class="">
         <div class="login-container" id="login-container">
             <h2 class="text-center">Login</h2>
             <form id="login-form">
