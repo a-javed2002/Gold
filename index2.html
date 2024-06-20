@@ -9,29 +9,19 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
+        html,
         body {
             font-family: Arial, sans-serif;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-size: 1.3rem;
+            font-weight: bolder;
+            /* Prevents scrollbars */
         }
 
-        .card {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #f4d03f 0%, #f39c12 100%);
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .card h3 {
-            margin-top: 0;
-            margin-bottom: 15px;
+        body{
+            overflow: scroll;
         }
 
         .loader {
@@ -66,6 +56,72 @@
             font-size: 1.2em;
         }
 
+        /* .marquee-ar {
+            background-color: #38a238;
+            color: #ffffff;
+            padding: 10px;
+        }
+
+        .marquee-en {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 10px;
+        } */
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+            margin-top: 20px;
+        }
+
+        .GoldPriceTable th,
+        .GoldPriceTable td {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .GoldPriceTable th {
+            background-color: #f4d03f;
+            border: 2px solid black !important;
+        }
+
+        .GoldPriceTable td {
+            background-color: #f9f9f9;
+            border: 2px solid black !important;
+        }
+
+        .GoldPriceTable tr:nth-child(3) td:nth-child(1) {
+            background-color: black;
+            color: white;
+        }
+
+        .GoldPriceTable tr:nth-child(3) td:nth-child(2) {
+            background-color: green;
+            color: white;
+        }
+
+        .GoldPriceTable tr:nth-child(3) td:nth-child(3) {
+            background-color: red;
+            color: white;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .marquee-ar,
+        .marquee-en {
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
+
         .marquee-ar {
             background-color: #38a238;
             color: #ffffff;
@@ -78,199 +134,263 @@
             padding: 10px;
         }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #f9f9f9;
-            margin-top: 20px;
+        .marquee-ar span,
+        .marquee-en span {
+            display: inline-block;
+            animation: marquee-ar 120s linear infinite;
+            /* Adjust duration here */
         }
+
+        .marquee-ar span {
+            animation-name: marquee-ar;
+        }
+
+        .marquee-en span {
+            animation-name: marquee-en;
+        }
+
+        @keyframes marquee-ar {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes marquee-en {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* th,td {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		} */
+
+        
     </style>
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-            <img src="logo.jpg" alt="Logo" style="width: 40px;">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact Us</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container">
-        <div class="header">
-            <h2>Gold Rates</h2>
-            <div>
-                <div class="flag">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Oman.svg" alt="Oman Flag">
-                    <div>Oman</div>
+    <div class="">
+        <div class="login-container" id="login-container">
+            <h2 class="text-center">Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" required>
                 </div>
-                <div class="time" id="current-time"></div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+            <div id="login-error" class="text-danger mt-3" style="display:none;">Invalid username or password</div>
+        </div>
+
+        <div id="gold-rates-container" style="display:none;">
+            <div class="header">
+                <!--<h2><b><u>Gold Rates</u></b></h2>-->
+                <!-- <div style="display:flex;">
+                    <div class="flag" style="display:flex;flex-direction:column">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Oman.svg" alt="Oman Flag">
+                        <span>Oman</span>
+                    </div>
+                </div> -->
+                <div class="time" id="current-time" style="font-size:1rem;"></div>
             </div>
-            <button id="refresh-btn" class="btn btn-primary mt-3"><i class="fas fa-sync-alt"></i> Refresh Data</button>
-        </div>
 
-        <div id="loader" class="loader">
-            <div class="spinner-border text-primary" role="status">
-                <span class="sr-only">Loading...</span>
+            <div id="data-table">
+                <table class="table table-bordered GoldPriceTable" border="1">
+                    <thead>
+                        <tr>
+                            <th class="ar">Carat &nbsp;/&nbsp;قيراط</th>
+                            <th class="ar">Sell &nbsp;/&nbsp;سعر البیع </th>
+                            <th class="ar">Buy &nbsp;/&nbsp;سعر الشراء </th>
+                        </tr>
+                    </thead>
+                    <tbody id="gold-prices-body">
+                        <!-- Data will be populated here -->
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <div id="data-row" class="row">
-            <!-- Data will be populated here -->
+        <div class="marquee-ar" id="marquee-ar" style="display:none;">
+            <span>
+                حَدَّثَنَا أَبُو بَكْرِ بْنُ أَبِي شَيْبَةَ، وَعَمْرٌو النَّاقِدُ، وَإِسْحَاقُ بْنُ إِبْرَاهِيمَ، -
+                وَاللَّفْظُ لاِبْنِ أَبِي شَيْبَةَ - قَالَ إِسْحَاقُ أَخْبَرَنَا وَقَالَ الآخَرَانِ، حَدَّثَنَا وَكِيعٌ،
+                حَدَّثَنَا سُفْيَانُ، عَنْ خَالِدٍ، الْحَذَّاءِ عَنْ أَبِي قِلاَبَةَ، عَنْ أَبِي الأَشْعَثِ، عَنْ
+                عُبَادَةَ بْنِ الصَّامِتِ، قَالَ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏ "‏ الذَّهَبُ بِالذَّهَبِ
+                وَالْفِضَّةُ بِالْفِضَّةِ وَالْبُرُّ بِالْبُرِّ وَالشَّعِيرُ بِالشَّعِيرِ وَالتَّمْرُ بِالتَّمْرِ
+                وَالْمِلْحُ بِالْمِلْحِ مِثْلاً بِمِثْلٍ سَوَاءً بِسَوَاءٍ يَدًا بِيَدٍ فَإِذَا اخْتَلَفَتْ هَذِهِ
+                الأَصْنَافُ فَبِيعُوا كَيْفَ شِئْتُمْ إِذَا كَانَ يَدًا بِيَدٍ ‏"‏ ‏. | عمان سعر الذهب | مصنعيه |
+                تشكيلات | سعودي طيبه٣.٨٠٠ - ٤.٨٠٠ | تركي ٣.٥٠٠ - ٤.٥٠٠ | بحريني ٢.٥٠٠ - ٣.٥٠٠ | كويتي٣.٠٠٠ - ٤.٠٠٠ |
+                عماني ٢.٠٠٠- ٢.٥٠٠ | (بعض رسوم تصنيع السلع المختارة ستكون لكل قطعة)
+            </span>
         </div>
 
+        <div class="marquee-en" id="marquee-en" style="display:none;">
+            <span>
+                | Oman Gold Rate | Making Charges | Saudi Taiba 3.800 - 4.800 | Turkish 3.500 - 4.500 | Bahraini 2.500 -
+                3.500 | Kuwaiti 3.000 - 4.000 | Omani 2.000 - 2.500 | Some Selected Good's Making Charges Will Be Per
+                Piece | پرانے سونے کو نئے سونے سے بدلنا اور قیمت میں فرق ادا کرنا جائز نہیں۔
+            </span>
+        </div>
+
+        <div>
+        <button id="logout-button" style="display: none;" class="btn btn-danger w-100 mt-3">Logout</button>
+        </div>
     </div>
 
-    <!-- Marquee messages -->
-    <div class="marquee-ar">
-        <marquee direction="left">مرحبا بكم في أسعار الذهب</marquee>
-    </div>
-    <div class="marquee-en">
-        <marquee direction="right">Welcome to Gold Rates</marquee>
-    </div>
-
-    <footer>
-        <p>&copy; 2024 Made by Love ♥</p>
-    </footer>
-
-    <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Function to fetch data from API
+            var users = [
+                { username: 'user1', password: 'password1' },
+                { username: 'user2', password: 'password2' },
+                { username: 'user3', password: 'password3' },
+                { username: 'user4', password: 'password4' },
+                { username: 'user5', password: 'password5' },
+                { username: 'user6', password: 'password6' },
+                { username: 'user7', password: 'password7' },
+                { username: 'user8', password: 'password8' },
+                { username: 'user9', password: 'password9' },
+                { username: 'user10', password: 'password10' },
+            ];
+
+            // Check if user is logged in
+            if (localStorage.getItem('loggedIn')) {
+                showGoldRates();
+            } else {
+                $('#login-container').show();
+            }
+
+            $('#login-form').on('submit', function (e) {
+                e.preventDefault();
+                var username = $('#username').val();
+                var password = $('#password').val();
+                var validUser = users.find(user => user.username === username && user.password === password);
+
+                if (validUser) {
+                    localStorage.setItem('loggedIn', username);
+                    showGoldRates();
+                } else {
+                    $('#login-error').show();
+                }
+            });
+
+            $('#logout-button').on('click', function () {
+                localStorage.removeItem('loggedIn');
+                location.reload();
+            });
+
+            function showGoldRates() {
+                $('#login-container').hide();
+                $('#gold-rates-container').show();
+                $('#marquee-ar').show();
+                $('#marquee-en').show();
+                $('#logout-button').show();
+                fetchData();
+                setInterval(fetchData, 15000);
+                setInterval(updateTime, 1000);
+            }
+
             function fetchData() {
-                $('#loader').show(); // Show loader
                 $.ajax({
-                    url: 'https://api.gold-api.com/price/XAU', // Replace with your API endpoint
+                    url: 'https://api.gold-api.com/price/XAU',
                     method: 'GET',
                     success: function (response) {
-                        // On success, fetch exchange rate and display the data
-                        fetchExchangeRate(response);
+                        displayData(response);
                     },
                     error: function (xhr, status, error) {
-                        // On error, handle the error
-                        $('#loader').hide(); // Hide loader
                         console.error('Error:', error);
                     }
                 });
             }
 
-            // Function to fetch USD to OMR exchange rate
-            function fetchExchangeRate(goldData) {
-                $.ajax({
-                    url: 'https://api.exchangerate-api.com/v4/latest/USD', // Replace with your exchange rate API endpoint
-                    method: 'GET',
-                    success: function (response) {
-                        // On success, handle the exchange rate data
-                        var usdToOmanRate = response.rates.OMR;
-                        $('#loader').hide(); // Hide loader
-                        displayData(goldData, usdToOmanRate);
-                    },
-                    error: function (xhr, status, error) {
-                        // On error, handle the error
-                        $('#loader').hide(); // Hide loader
-                        console.error('Error:', error);
-                    }
-                });
-            }
+            function displayData(data) {
+                var goldPricesBody = $('#gold-prices-body');
+                goldPricesBody.empty();
 
-            // Function to display data on the webpage
-            function displayData(data, exchangeRate) {
-                var dataRow = $('#data-row');
-                dataRow.empty(); // Clear previous data
+                var ouncePrice = data.price;
+                var price24KaratOman = (ouncePrice * 1.4485 + 10) / 10 / 11.664;
+                var price22KaratOman = (ouncePrice * 1.4485 + 10) / 10 / 11.664 * 0.916;
+                var price21KaratOman = (ouncePrice * 1.4485 + 10) / 10 / 11.664 * 0.88;
+                var price18KaratOman = (ouncePrice * 1.4485 + 10) / 10 / 11.664 * 0.75;
 
-                // Assuming data.price is the price of 22K gold per ounce in USD
-                var ouncePrice22KUSD = data.price;
-
-                // Sell prices in USD per ounce
-                var sellPrice24KUSD = ouncePrice22KUSD * (24 / 22);
-                var sellPrice21KUSD = ouncePrice22KUSD * (21 / 22);
-                var sellPrice18KUSD = ouncePrice22KUSD * (18 / 22);
-
-                // Sell prices in OMR per gram and ounce
-                var sellPrice24KOMRGram = (sellPrice24KUSD / 31.1035) * exchangeRate;
-                var sellPrice24KOMROunce = sellPrice24KUSD * exchangeRate;
-                var sellPrice22KOMRGram = (ouncePrice22KUSD / 31.1035) * exchangeRate;
-                var sellPrice22KOMROunce = ouncePrice22KUSD * exchangeRate;
-                var sellPrice21KOMRGram = (sellPrice21KUSD / 31.1035) * exchangeRate;
-                var sellPrice21KOMROunce = sellPrice21KUSD * exchangeRate;
-                var sellPrice18KOMRGram = (sellPrice18KUSD / 31.1035) * exchangeRate;
-                var sellPrice18KOMROunce = sellPrice18KUSD * exchangeRate;
-
-                            // Buy prices in OMR per gram
-                            var buyPrice24KOMRGram = ((ouncePrice22KUSD * 1.4485 + 10) / 10 / 11.664) * exchangeRate;
-                var buyPrice22KOMRGram = ((ouncePrice22KUSD * 1.4485 + 10) / 10 / 11.664 * 0.916) * exchangeRate;
-                var buyPrice21KOMRGram = ((ouncePrice22KUSD * 1.4485 + 10) / 10 / 11.664 * 0.880) * exchangeRate;
-                var buyPrice18KOMRGram = ((ouncePrice22KUSD * 1.4485 + 10) / 10 / 11.664 * 0.750) * exchangeRate;
-
-                // Buy prices in OMR per ounce
-                var buyPrice24KOMROunce = buyPrice24KOMRGram * 31.1035;
-                var buyPrice22KOMROunce = buyPrice22KOMRGram * 31.1035;
-                var buyPrice21KOMROunce = buyPrice21KOMRGram * 31.1035;
-                var buyPrice18KOMROunce = buyPrice18KOMRGram * 31.1035;
-
-                // Create card elements for each type of gold
                 var goldTypes = [
-                    { title: '24 Karat', sellPriceGram: sellPrice24KOMRGram, sellPriceOunce: sellPrice24KOMROunce, buyPriceGram: buyPrice24KOMRGram, buyPriceOunce: buyPrice24KOMROunce },
-                    { title: '22 Karat', sellPriceGram: sellPrice22KOMRGram, sellPriceOunce: sellPrice22KOMROunce, buyPriceGram: buyPrice22KOMRGram, buyPriceOunce: buyPrice22KOMROunce },
-                    { title: '21 Karat', sellPriceGram: sellPrice21KOMRGram, sellPriceOunce: sellPrice21KOMROunce, buyPriceGram: buyPrice21KOMRGram, buyPriceOunce: buyPrice21KOMROunce },
-                    { title: '18 Karat', sellPriceGram: sellPrice18KOMRGram, sellPriceOunce: sellPrice18KOMROunce, buyPriceGram: buyPrice18KOMRGram, buyPriceOunce: buyPrice18KOMROunce }
+                    { title: '24 Karat', sellPrice: price24KaratOman, buyPrice: price24KaratOman - 1 },
+                    { title: '22 Karat', sellPrice: price22KaratOman, buyPrice: price22KaratOman - 2.5 },
+                    { title: '21 Karat', sellPrice: price21KaratOman, buyPrice: price21KaratOman - 2.5 },
+                    { title: '18 Karat', sellPrice: price18KaratOman, buyPrice: price18KaratOman - 2.5 }
                 ];
 
                 goldTypes.forEach(function (goldType) {
-                    var rowContent = `
-                        <div class="col-md-12">
-                            <div class="card">
-                                <h3>${goldType.title}</h3>
-                                <p>Sell Price: ${goldType.sellPriceGram.toFixed(2)} OMR per gram | ${goldType.sellPriceOunce.toFixed(2)} OMR per ounce</p>
-                                <p>Buy Price: ${goldType.buyPriceGram.toFixed(2)} OMR per gram | ${goldType.buyPriceOunce.toFixed(2)} OMR per ounce</p>
-                            </div>
-                        </div>
+                    var titleContent = goldType.title;
+                    var sellPriceContent = goldType.sellPrice.toFixed(3) + " OMR";
+                    var buyPriceContent = goldType.buyPrice.toFixed(3) + " OMR";
+                    var rowContent = ``;
+
+                    titleContent = '<b style="font-size:20px;">' + goldType.title + '</b>';
+                    sellPriceContent = '<span style="font-size:20px;">' + sellPriceContent + '</span>';
+                    buyPriceContent = '<span style="font-size:20px;">' + buyPriceContent + '</span>';
+                    if (goldType.title === '21 Karat') {
+                        rowContent = `
+                        <tr>
+                            <td class="eng"><small>${titleContent}</small></td>
+                            <td class="eng"><small>${sellPriceContent}</small></td>
+                            <td class="eng"><small>${buyPriceContent}</small></td>
+                        </tr>
                     `;
-                    dataRow.append(rowContent);
+                    }
+                    else {
+                        rowContent = `
+                        <tr>
+                            <td class="eng"><small>${titleContent}</small></td>
+                            <td class="eng"><small>${sellPriceContent}</small></td>
+                            <td class="eng"><small>${buyPriceContent}</small></td>
+                        </tr>
+                            `;
+                    }
+                    goldPricesBody.append(rowContent);
                 });
 
-                var updatedAtContent = `<p class="text-center w-100">Last Updated: ${data.updatedAtReadable}</p>`;
-                dataRow.append(updatedAtContent);
+                var ouncePriceContent = `
+                    <tr>
+                        <td class="eng gYellowText" style="background-color: #f4d03f;"><small><strong><b style="font-size:20px;">Ounce Price</b></strong></small></td>
+                        <td class="eng gGreyText" colspan="2"><strong style="font-size:20px;">$${ouncePrice.toFixed(2)}</strong></td>
+                    </tr>
+                `;
+                goldPricesBody.append(ouncePriceContent);
+
+                var updatedAtContent = `<tr><td colspan="3" class="text-center"><small>Last Updated: ${data.updatedAtReadable}</small></td></tr>`;
+                goldPricesBody.append(updatedAtContent);
             }
 
-            // Fetch data when the page loads
-            fetchData();
-
-            // Refresh data on button click
-            $('#refresh-btn').click(function () {
-                fetchData();
-            });
-
-            // Function to update the current time
             function updateTime() {
                 var now = new Date();
-                var timeString = now.toLocaleTimeString();
-                $('#current-time').text(timeString);
+                var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                var day = days[now.getDay()]; // Get the day string
+                var dateString = now.toLocaleDateString(); // Get the date string
+                var timeString = now.toLocaleTimeString(); // Get the time string
+                var dateTimeString = day + ', ' + dateString + ' ' + timeString; // Combine day, date, and time
+                $('#current-time').text(dateTimeString); // Update the element with day, date, and time
             }
 
-            // Update time every second
-            setInterval(updateTime, 1000);
         });
     </script>
 </body>
 
-</html>
 
+</html>
