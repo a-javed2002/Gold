@@ -165,8 +165,7 @@
 								<div class="col text-right">
 									<!-- <h6><small>20&nbsp;June&nbsp;2024</small></h6>
 						<h6><small><strong>10:41&nbsp;AM</strong></small></h6> -->
-									<h6 style="margin-top:5px;"><a
-											href="#" id="logout-button"><small><strong
+									<h6 style="margin-top:5px;"><a href="#" id="logout-button"><small><strong
 													style="color:#9553c6">Logout</strong> <img
 													src="./Gold Buy &amp; Sale Rates_files/logout.svg"
 													height="13"></small></a></h6>
@@ -174,13 +173,11 @@
 							</div>
 							<div class="row">
 								<div class="col" style="margin-bottom: 10px;">
-									<h5><small>20&nbsp;June&nbsp;2024 <strong>10:41&nbsp;AM</strong></small> <img
-											class="" style="border: solid 1px;" height="20"
-											src="./Gold Buy &amp; Sale Rates_files/Flag-Oman.jpg"></h5>
-									<!-- <div class="usdbox">
-						<img class="usflag" src="images/usa.jpg" />
-						<small class="dolorPrice"><strong>$2343.68</strong></small>
-					</div> -->
+									<h5>
+										<small id="current-time"></small>
+										<img class="" style="border: solid 1px;" height="20"
+											src="./Gold Buy &amp; Sale Rates_files/Flag-Oman.jpg">
+									</h5>
 								</div>
 							</div>
 							<div class="row">
@@ -221,7 +218,8 @@
 											<tr>
 												<td class="eng gYellowText"><small><strong>Ounce Price</strong></small>
 												</td>
-												<td class="eng gGreyText" colspan="2"><strong id="ounceRate">$2343.68</strong></td>
+												<td class="eng gGreyText" colspan="2"><strong
+														id="ounceRate">$2343.68</strong></td>
 											</tr>
 										</tbody>
 									</table>
@@ -361,7 +359,7 @@
 				document.getElementById("sell4").innerHTML = price18KaratOmanSell.toFixed(2) + ' OMR';
 				document.getElementById("buy4").innerHTML = price18KaratOmanBuy.toFixed(2) + ' OMR';
 
-				document.getElementById("ounceRate").innerHTML = '$'+ouncePrice.toFixed(2);;
+				document.getElementById("ounceRate").innerHTML = '$' + ouncePrice.toFixed(2);;
 
 
 				// var goldTypes = [
@@ -382,31 +380,31 @@
 				// 	buyPriceContent = '<span style="font-size:20px;">' + buyPriceContent + '</span>';
 				// 	if (goldType.title === '21 Karat') {
 				// 		rowContent = `
-                //         <tr>
-                //             <td class="eng"><small>${titleContent}</small></td>
-                //             <td class="eng"><small>${sellPriceContent}</small></td>
-                //             <td class="eng"><small>${buyPriceContent}</small></td>
-                //         </tr>
-                //     `;
+				//         <tr>
+				//             <td class="eng"><small>${titleContent}</small></td>
+				//             <td class="eng"><small>${sellPriceContent}</small></td>
+				//             <td class="eng"><small>${buyPriceContent}</small></td>
+				//         </tr>
+				//     `;
 				// 	}
 				// 	else {
 				// 		rowContent = `
-                //         <tr>
-                //             <td class="eng"><small>${titleContent}</small></td>
-                //             <td class="eng"><small>${sellPriceContent}</small></td>
-                //             <td class="eng"><small>${buyPriceContent}</small></td>
-                //         </tr>
-                //             `;
+				//         <tr>
+				//             <td class="eng"><small>${titleContent}</small></td>
+				//             <td class="eng"><small>${sellPriceContent}</small></td>
+				//             <td class="eng"><small>${buyPriceContent}</small></td>
+				//         </tr>
+				//             `;
 				// 	}
 				// 	goldPricesBody.append(rowContent);
 				// });
 
 				// var ouncePriceContent = `
-                //     <tr>
-                //         <td class="eng gYellowText" style="background-color: #f4d03f;"><small><strong><b style="font-size:20px;">Ounce Price</b></strong></small></td>
-                //         <td class="eng gGreyText" colspan="2"><strong style="font-size:20px;">$${ouncePrice.toFixed(2)}</strong></td>
-                //     </tr>
-                // `;
+				//     <tr>
+				//         <td class="eng gYellowText" style="background-color: #f4d03f;"><small><strong><b style="font-size:20px;">Ounce Price</b></strong></small></td>
+				//         <td class="eng gGreyText" colspan="2"><strong style="font-size:20px;">$${ouncePrice.toFixed(2)}</strong></td>
+				//     </tr>
+				// `;
 				// goldPricesBody.append(ouncePriceContent);
 
 				// var updatedAtContent = `<tr><td colspan="3" class="text-center"><small>Last Updated: ${data.updatedAtReadable}</small></td></tr>`;
